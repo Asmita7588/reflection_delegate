@@ -42,6 +42,72 @@ internal class Program
         }
 
 
+        //Delegets in c# 
+
+       // 1)
+        PrintMessage printMessageDel = new PrintMessage(DelegatesDemo.PrintToConsole);
+
+        printMessageDel("Hello , Asmita!");
+
+        // 2)
+
+        PrintGreetings printGreetingsDel = DelegatesDemo.PrintToConsole;
+        printMessageDel += DelegatesDemo.PrintToFile;
+
+        //3
+
+        Dictionary<string , MenuFunction> menu = new Dictionary<string , MenuFunction>
+        {
+            {"1", DelegatesDemo.ShowDate },
+            {"2", DelegatesDemo.ShowTime },
+            {"3", DelegatesDemo.Exit }
+        };
+
+
+        while (true)
+        {
+            Console.WriteLine("\nMenu:");
+            Console.WriteLine("1. Show Date");
+            Console.WriteLine("2. Show Time");
+            Console.WriteLine("3. Exit");
+            Console.Write("Enter your choice: ");
+            string choice = Console.ReadLine();
+
+            if (menu.ContainsKey(choice))
+            {
+                menu[choice]();
+                if (choice == "3")
+                    break;
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice. Please try again.");
+            }
+
+        }
+
+        //4
+
+        Calculate cal = DelegatesDemo.Add;
+
+        Console.WriteLine("Addition = " + cal(5, 6) );
+
+        cal += DelegatesDemo.Sub;
+
+        Console.WriteLine("Substraction = " + cal(10, 6));
+
+        cal = DelegatesDemo.Multiply;
+
+        Console.WriteLine("Multiplication = " +cal(4 , 3));
+
+        //for non static method
+
+        DelegatesDemo demo = new DelegatesDemo();
+
+        cal += demo.Divide;
+
+        Console.WriteLine("Division = " + cal(10, 5));
+
 
     }
-}
+    }
