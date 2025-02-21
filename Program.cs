@@ -42,6 +42,13 @@ internal class Program
         }
 
 
+        //Delegets in c# 
+
+
+
+        PrintMessage printMessageDel = new PrintMessage(DelegatesDemo.PrintToConsole);
+
+        printMessageDel("Hello , Asmita!");
 
     }
 }
